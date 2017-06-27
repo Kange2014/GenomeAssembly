@@ -100,7 +100,12 @@ where:
 •GenomeName is the name to use for the reference entry that will be created.
 •genome.fasta is the FASTA file containing the reference sequence to upload.
 
-2. Then, copy the input.xml to a designated directory and set the reference information in the re-sequencing job params.xml, eg:
+2. index the genome using samtools
+
+        cd /path/to/respository/GenomeName/reference
+        samtools faidx genome.fasta
+
+3. Then, copy the input.xml to a designated directory and set the reference information in the re-sequencing job params.xml, eg:
 
     <protocol>
         <param name="reference">
@@ -109,7 +114,7 @@ where:
         </param>
     </protocol>
 
-3. finally, run HGAP again:
+4. finally, run HGAP again:
         
         smrtpipe.py --params=params.xml xml:input.xml
 
@@ -132,6 +137,3 @@ If the finally obtained genome is for private use, you may don't want to upload 
         $HOME/genomes/HNC47_genome.fasta
 
 The prediction features include coding sequence (CDS), ribosomal RNA genes (rRNA), transfer RNA and tmRNA genes, non-coding RNA, CRISPRs. And it also provides genome annotation results with various formats, e.g., genbank, gff. 
-
-  
- 
