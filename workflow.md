@@ -46,6 +46,8 @@ Set the genome size to estimated value, eg. 4500000 for ecoli (important so that
 
         smrtpipe.py --params=params.xml xml:input.xml
 
+Open index.html could present us a qucik survey of the Assembly and Resequencing Reports. Polished assembly results are deposited in data/polished_assembly.fasta.gz. At this stage, sometimes more than 1 contig would be observed. We could check the General/Coverage reports to see the coverage distribution across the contigs. Just discard contigs with <20x coverage (sometimes >20x). They tend to be short, <20kb. Further check could be mapping the spurious contigs to the longest contig to see whether it's part of it. 
+
 ## circularizing and trimming
 
 Since bacterial genomes are generally circular, confirmed via a dot plot, the beginning and end of the contig contain the same sequence. This results in reads mapping to both locations during the HGAP polishing step, as such the reads have a low mapping score, and are not used to call consensus. In this case a polished assemby will have low quality consensus sequence in these regions. The following workflow from [Circularizing and trimming](https://github.com/PacificBiosciences/Bioinformatics-Training/wiki/Circularizing-and-trimmingaddresses) addresses this problem and will result in a blunt ended circular sequence that has high quality consensus throughout. Other than SMRT Analysis the AMOS package is required. Note part of the AMOS package is included in SMRT Analysis, but a full install is required for this workflow. Note as of 2.3 the AMOS executables in SMRT Analysis work for this procedure, simply source /etc/setup.sh.
