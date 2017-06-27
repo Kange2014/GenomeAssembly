@@ -115,5 +115,23 @@ where:
 
 ## correct indels errors if illumina data exists
 
-PacBio is also well known for its high error rate in indels, although for SNPs it could achieve a very high concensus level due to this kind of error's stochastic characteristics. Therefore, quiver result isn’t perfect. We could further improve it with illumina pair-end sequencing data, including single base differences, small indels, larger indel or block substitution events, gap filling, identification of local misassemblies, etc. In one of my cases, with the help of Pilon, we removed 30 remaining indels in a 4.5 Mbp genome despite Quiver calling > QV 60 consensus.
+PacBio is also well known for its high error rate in indels, although for SNPs it could achieve a very high concensus level due to this kind of error's stochastic characteristics. Therefore, quiver result isn’t perfect. We could further improve it with illumina pair-end sequencing data, including single base differences, small indels, larger indel or block substitution events, gap filling, identification of local misassemblies, etc. In one of my cases, with the help of Pilon, we removed 30 remaining indels in a 4.5 Mbp genome despite Quiver calling > QV 60 consensus. Whether another round of polishing is needed, it's up to the user.
 
+## Genome annotation
+
+If the finally otained genome is for private use, you may don't want to upload it the public server for genome anotation, for example, [RAST](https://rast.nmpdr.org/). In such a situation, Prokka could be used:
+
+        prokka \
+        --outdir $HOME/genomes/HNC47 --force \
+        --prefix HNC47 --addgenes --addmrna --locustag HNC47 \
+        --increment 1 --gffver 2 --centre CDC  --compliant \
+        --genus Escherichia --species coli --strain HNC47 \
+        --kingdom Bacteria  --usegenus \
+        --proteins $HOME/genome/BL21_DE3.gb \
+        --evalue 1e-9 --rfam \
+        $HOME/genomes/HNC47_genome.fasta
+
+The prediction features include coding sequence (CDS), ribosomal RNA genes (rRNA), transfer RNA and tmRNA genes, non-coding RNA, CRISPRs. And it also provides genome annotation results with various formats, e.g., genbank, gff. 
+
+  
+ 
