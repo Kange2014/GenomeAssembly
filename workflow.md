@@ -112,3 +112,8 @@ where:
 3. finally, run HGAP again:
         
         smrtpipe.py --params=params.xml xml:input.xml
+
+## correct indels errors if illumina data exists
+
+PacBio is also well known for its high error rate in indels, although for SNPs it could achieve a very high concensus level due to this kind of error's stochastic characteristics. Therefore, quiver result isn’t perfect. We could further improve it with illumina pair-end sequencing data, including single base differences, small indels, larger indel or block substitution events, gap filling, identification of local misassemblies, etc. In one of my cases, with the help of Pilon, we removed 30 remaining indels in a 4.5 Mbp genome despite Quiver calling > QV 60 consensus.
+
