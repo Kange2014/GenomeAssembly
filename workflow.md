@@ -119,7 +119,7 @@ PacBio is also well known for its high error rate in indels, although for SNPs i
 
 ## Genome annotation
 
-If the finally otained genome is for private use, you may don't want to upload it the public server for genome anotation, for example, [RAST](https://rast.nmpdr.org/). In such a situation, Prokka could be used:
+If the finally obtained genome is for private use, you may don't want to upload it to the public server for genome anotation, for example, [RAST](https://rast.nmpdr.org/). In such a situation, Prokka could be used:
 
         prokka \
         --outdir $HOME/genomes/HNC47 --force \
